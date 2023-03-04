@@ -1,4 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home Page",
+  description: "Welcome to Home page"
+};
 
 export default function Home() {
   return (
