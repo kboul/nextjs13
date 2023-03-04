@@ -8,9 +8,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <main style={{ display: "flex", flexDirection: "column" }}>
       <h1>Hello World baby!</h1>
       <Link href="/about">Go to About Page</Link>
+      <Link href="/users">Users</Link>
     </main>
   );
 }
