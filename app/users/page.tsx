@@ -1,4 +1,4 @@
-import getAllUsers from "@/api/getAllUsers";
+import getUsers from "@/api/getUsers";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -8,16 +8,13 @@ export const metadata: Metadata = {
 
 export default async function Users() {
   // request is performed as the website is built
-  const usersData: Promise<User[]> = getAllUsers();
+  const usersData = getUsers();
   const users = await usersData;
 
   const content = (
     <section>
-      <h2>
-        <Link href="/">Back to Home</Link>
-      </h2>
-      <br />
-
+      <Link href="/">Back to Home</Link>
+      <br /> <br />
       {users.map(user => (
         <p key={user.id}>
           <Link href={`/users/${user.id}`}>{user.name}</Link>
