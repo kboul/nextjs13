@@ -1,5 +1,9 @@
 import getUser from "@/api/getUser";
+import getUserPost from "@/api/getUserPost";
 import Link from "next/link";
+import { Suspense } from "react";
+
+import UserPosts from "./UserPosts";
 
 interface UserProps {
   params: {
@@ -9,6 +13,8 @@ interface UserProps {
 
 export default async function User({ params: { userId } }: UserProps) {
   const userData = getUser(userId);
+  const userPostData = getUserPost(userId);
+
   const user = await userData;
 
   return (
@@ -18,6 +24,11 @@ export default async function User({ params: { userId } }: UserProps) {
       <br />
       <h2>{user.name}</h2>
       <br />
+
+      <Suspense fallback="Loading...">
+        {/* @ts-expect-error Server Component*/}
+        <UserPosts promise={userPostData} />
+      </Suspense>
     </>
   );
 }
